@@ -1,4 +1,4 @@
-const API_KEY = "d96a303461300614f408acabd0ed7e8e";
+const API_KEY = "YOUR_OPENWEATHER_API_KEY";
 
 const WEATHER_API = "https://api.openweathermap.org/data/2.5/weather";
 const FORECAST_API = "https://api.openweathermap.org/data/2.5/forecast";
@@ -28,6 +28,15 @@ this.searchBtn.addEventListener(
 this.handleSearch.bind(this)
 );
 
+this.cityInput.addEventListener(
+"keypress",
+function(e){
+if(e.key === "Enter"){
+this.handleSearch();
+}
+}.bind(this)
+);
+
 this.clearBtn.addEventListener(
 "click",
 this.clearHistory.bind(this)
@@ -51,7 +60,6 @@ this.getWeather(city);
 WeatherApp.prototype.showLoading = function(){
 
 this.weatherDisplay.innerHTML = `
-
 <div>
 <div class="spinner"></div>
 <p class="loading">Loading weather...</p>
@@ -65,7 +73,6 @@ this.forecastContainer.innerHTML = "";
 WeatherApp.prototype.showError = function(message){
 
 this.weatherDisplay.innerHTML = `
-
 <div class="error-message">⚠️ ${message}</div>
 `;
 
@@ -122,7 +129,6 @@ const iconUrl =
 `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
 this.weatherDisplay.innerHTML = `
-
 <div class="weather-info">
 <h2 class="city-name">${city}</h2>
 <img src="${iconUrl}" class="weather-icon">
@@ -162,7 +168,6 @@ const iconUrl =
 `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
 this.forecastContainer.innerHTML += `
-
 <div class="forecast-card">
 <div>${dayName}</div>
 <img src="${iconUrl}" class="forecast-icon">
